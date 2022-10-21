@@ -2,36 +2,35 @@ window.onload = function() {
     let baseUrl = "http://0.0.0.0:3000/get_links";
 
     document.getElementById("submit").addEventListener("click", function () {
-        let initialUrl = document.getElementById("initial").value;
-        const request = new XMLHttpRequest();
-        let url = `${baseUrl}/${initialUrl}`;
-        console.log(`GET to ${url}`);
-        request.open("GET", url);
-        request.responseType = "json";
-        request.send();
-        document.getElementById("error").style.display = "none";
-        document.getElementById("results").style.display = "none";
-        document.getElementById("progress").style.display = "block";
+        let userQuery = document.getElementById("initial").value;
+        let url = `${baseUrl}/${userQuery}`;
+        request = sendGetRequest(url);
+        updateView({progress: true})
         request.onload = function () {
-            if (request.response) {
-                console.log("response: ", request.response);
+            if (request.response && request.status == 200) {
                 let urls = request.response;
-                document.getElementById("progress").style.display = "none";
-                document.getElementById("results").style.display = "block";
+                updateView({results: true})
                 for (var i=0; i<urls.length; i++) {
-                    let url = urls[i];
-                    let text = decodeURIComponent(url.split("/wiki/")[1]);
-                    document.getElementById(`link${i}`).innerHTML = `<a href="${url}">${text}<\a>`;
+                    let text = decodeURIComponent(urls[i].split("/wiki/")[1]);
+                    document.getElementById(`link${i}`).innerHTML = `<a href="${urls[i]}">${text}<\a>`;
                 }
             } else {
-                console.log("no response");
-                document.getElementById("progress").style.display = "none";
-                document.getElementById("error").style.display = "block";
+                updateView({error: true})
            }
-
-
         }
-
-
     })
+}
+
+function sendGetRequest(url) {
+    const request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.responseType = "json";
+    request.send();
+    return request;
+}
+
+function updateView({progress=false, results=false, error=false} = {}) {
+    document.getElementById("progress").style.display = progress ? "block" : "none";
+    document.getElementById("results").style.display = results ? "block" : "none";
+    document.getElementById("error").style.display = error ? "block" : "none";
 }
