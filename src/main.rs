@@ -17,7 +17,7 @@ async fn main() {
         .route("/health", get(health_handler))
         .layer(CorsLayer::permissive());
 
-    let address = SocketAddr::from(([0, 0, 0, 0], 3000));
+    let address = SocketAddr::from(([0, 0, 0, 0], 8080));
     axum::Server::bind(&address)
        .serve(app.into_make_service())
        .await

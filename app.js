@@ -1,5 +1,5 @@
 window.onload = function() {
-    let baseUrl = "https://wikidegrees.onrender.com/get_links";
+    let baseUrl = "https://wikidegrees.fly.dev/get_links";
 
     document.getElementById("submit").addEventListener("click", function () {
         let userQuery = document.getElementById("initial").value;
