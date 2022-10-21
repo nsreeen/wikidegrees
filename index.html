@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>wikidegrees</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="app.js"></script>
+<style>
+
+body {
+    background-color: #fff3c2;
+    padding: 10px;
+    font-family: Courier;
+}
+
+hr {
+    color: #34075f;
+}
+
+#results, #progress, #error {
+    display: none;
+}
+
+td, tr {
+    outline: 1px solid #34075f;
+    padding: 10px;
+}
+
+#link5 {
+    background-color: #ffac12;
+}
+
+#urlStart {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+input {
+    margin: 0;
+}
+
+.panel {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+</style>
+
+<body>
+
+    <div class="container">
+
+        <h1>wikidegrees</h1>
+
+        <hr>
+
+        <p>Enter a wikipedia url and get another wikipedia url linked 6 degrees away.  Inspired by
+            <a href="https://www.sixdegreesofwikipedia.com/">sixdegreesofwikipedia</a>.</p>
+
+        <div id="form" class="panel">
+            <div id="urlStart">https://en.wikipedia.org/wiki/<input id="initial"></div>
+            <button id="submit">get linked url</button>
+        </div>
+
+        <div id="progress" class="panel">
+            <progress></progress>
+        </div>
+
+        <div id="results" class="panel">
+            <table>
+                <tr><td id="link0"></td></tr>
+                <tr><td id="link1"></td></tr>
+                <tr><td id="link2"></td></tr>
+                <tr><td id="link3"></td></tr>
+                <tr><td id="link4"></td></tr>
+                <tr><td id="link5"></td></tr>
+            </table>
+        </div>
+
+        <div id="error" class="panel">
+            <p>That didn't work</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

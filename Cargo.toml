@@ -1,0 +1,15 @@
+[package]
+name = "wikidegrees"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.11.3", features = ["blocking", "cookies"] }
+soup = "0.5.1"
+rand = "0.8.5"
+axum = "0.5"
+tokio = { version = "1", features = ["full"] }
+openssl-probe = "0.1.2"
+tower-http = { version = "0.3.4", features = ["cors"] }
