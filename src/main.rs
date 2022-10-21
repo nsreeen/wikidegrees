@@ -15,7 +15,7 @@ async fn main() {
     let app = Router::new()
         .route("/get_links/:url_suffix", get(get_links_handler))
         .route("/health", get(health_handler))
-        .layer(CorsLayer::permissive());
+        .layer(CorsLayer::new().allow_origin("https://nsreeen.github.io/wikidegrees/"));
 
     let address = SocketAddr::from(([0, 0, 0, 0], 8080));
     axum::Server::bind(&address)
